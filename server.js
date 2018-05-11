@@ -6,7 +6,7 @@ const app = express()
 const hostname = '127.0.0.1';
 const PORT = process.env.PORT || 5000
 
-let users = ['oscar', 'juan', 'marcos', 'julieta'];
+let users = ['oscar', 'juan', 'marcos', 'julieta', 'CamilaR'];
 let books = [
     {titulo: 'El señor de los anillos', autor: 'J.R.R. Tolkien'},
     {titulo: "Cancion de hielo y fuego", autor: 'George RR Martin'}
@@ -30,12 +30,21 @@ app.get('/users', (req, res) => {
     res.send(users)
 })
 
-// URL para eliminar un usuario
+// URL para crear un usuario
 // http://127.0.0.1:5000/users
 app.post('/users', (req, res) => {
     let data = req.query;
     users.push(data.user_name)
     res.send("New user add")
+})
+
+// URL para crear un book
+// http://127.0.0.1:5000/book
+app.post('/book', (req, res) => {
+    let data = req.query;
+	let item = {titulo: data.titulo, autor: data.autor}
+    users.push(item)
+    res.send("New book add")
 })
 
 // URL para actualizar un usuario
